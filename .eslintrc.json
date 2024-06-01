@@ -22,9 +22,13 @@
     "semi": "error",
     "no-multi-spaces": "error",
     "space-in-parens": "error",
+    "no-empty": "off",
     "no-multiple-empty-lines": "error",
     "prefer-const": "error",
-    "@typescript-eslint/no-unused-vars": [1, { "vars": "all", "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      1,
+      { "vars": "all", "argsIgnorePattern": "^_" }
+    ],
     "import/order": [
       1,
       {

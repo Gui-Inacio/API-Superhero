@@ -15,6 +15,7 @@ interface IUserRepository {
   findByEmail(email: string): Promise<User | null>;
   updatePassord(data: UserUpdateInput): Promise<void>;
   userLogin(email: string): Promise<User | null>;
+  findAll(id: string): Promise<User | null>;
 }
 
 export { IUserRepository };
