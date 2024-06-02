@@ -4,7 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '../repositories/IUserRepository';
 import { omit } from '../../../shared/util/Omit';
 import { CreateUser } from '../dtos/CreateUserDTO';
-import Conflict from '../../../shared/dtos/errors/conflict';
+import Conflict from '../../../shared/errors/conflict';
 
 @injectable()
 export class CreateUserService {
