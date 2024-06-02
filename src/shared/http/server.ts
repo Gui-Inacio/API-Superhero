@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import 'reflect-metadata';
+import '../container';
 
 import { userRouter } from '../../modules/user/infra/http/routes/users.routes';
 
