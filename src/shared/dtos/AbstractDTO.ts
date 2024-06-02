@@ -1,6 +1,8 @@
 import { type ZodType, ZodError, z } from 'zod';
 
+import AppError from '../errors/appError';
 import { logger } from '../container/providers/logger';
+import { ValidationError } from '../errors/validationError';
 
 import { ZodErrorMap } from './CustomErrorMap';
 
@@ -26,6 +28,10 @@ export abstract class AbstractDTO<Schema extends ZodType> {
     return this.data;
   }
 
+  public get<K extends keyof z.infer<Schema>>(key: K) {
+    return this.data[key];
+  }
+
   private validate(data: unknown) {
     try {
       this.data = this.rules().parse(data, {
@@ -34,6 +40,11 @@ export abstract class AbstractDTO<Schema extends ZodType> {
       });
     } catch (error) {
       logger.error(error);
+      if (error instanceof ZodError) {
+        throw new ValidationError(error);
+      }
+
+      throw new AppError('Internal Server Error', 500);
     }
   }
 }
