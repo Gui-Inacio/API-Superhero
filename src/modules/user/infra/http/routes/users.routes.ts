@@ -7,5 +7,6 @@ const userRouter = Router();
 const userController = new UsersController();
 
 userRouter.post('/create', userController.createUser);
+userRouter.get('/search/:id', userController.findById);
 
 export { userRouter };
