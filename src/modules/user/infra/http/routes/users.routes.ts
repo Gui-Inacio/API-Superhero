@@ -8,5 +8,6 @@ const userController = new UsersController();
 
 userRouter.post('/create', userController.createUser);
 userRouter.get('/search/:id', userController.findById);
+userRouter.get('/email', userController.findByEmail);
 
 export { userRouter };
