@@ -38,6 +38,10 @@ export class UserRepository
     return await this.userRepository.findOne({ where: { email } });
   }
 
+  async listAll() {
+    return await this.userRepository.find();
+  }
+
   async updatePassword({ id, password }: UserUpdateInput) {
     await this.userRepository.update(
       { id },
