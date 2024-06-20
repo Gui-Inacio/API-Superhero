@@ -10,5 +10,6 @@ userRouter.post('/create', userController.createUser);
 userRouter.get('/search/:id', userController.findById);
 userRouter.get('/email/:email', userController.findByEmail);
 userRouter.get('/', userController.listAll);
+//userRouter.get('/logout');
 
 export { userRouter };

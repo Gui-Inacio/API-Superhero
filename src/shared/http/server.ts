@@ -18,17 +18,6 @@ app.use(cors());
 app.use(routes);
 app.use(express.json());
 
-router.get('/', (_req, res) => {
-  const data = {
-    uptime: process.uptime(),
-    message: 'Ok',
-    date: new Date(),
-    serviceName: process.env.SERVICE_NAME,
-  };
-
-  res.status(200).send(data);
-});
-
 app.use('/users', userRouter);
 app.use('/login', AuthenticationRouter);
 app.use(ErrorRequestHandler);
