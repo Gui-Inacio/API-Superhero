@@ -28,14 +28,14 @@ export class AuthenticationController {
     }
 
     const JwtToken = authHeader.split(' ')[1];
-    console.log(JwtToken);
+
     if (!JwtToken) {
       return response.status(401).json({ message: 'Token is missing' });
     }
 
     // Invalida o token adicionando-o à lista de sessões (blacklist)
     sessions[JwtToken] = false;
-    console.log(JwtToken);
+
     return response.status(204).send('Logout feito com sucesso!'); // No Content
   }
   async teste(request: Request, response: Response): Promise<Response> {
