@@ -13,7 +13,7 @@ export async function isAuth(
   if (!authHeader) {
     throw new Unauthorized('Token missing');
   }
-  const [, token] = authHeader.split('');
+  const [, token] = authHeader.split(' ');
 
   try {
     const { sub } = verify(token, process.env.APP_SECRET as string);

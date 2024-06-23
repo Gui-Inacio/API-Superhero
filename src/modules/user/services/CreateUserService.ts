@@ -11,13 +11,18 @@ export class CreateUserService {
   constructor(
     @inject('UserRepository')
     private readonly userRepository: IUserRepository,
-  ) { }
+  ) {}
 
   async execute(data: CreateUser) {
-    const userAlreadyExists = await this.userRepository.findByEmail(data.email);
+    const emailAlreadyExists = await this.userRepository.findByEmail(
+      data.email,
+    );
+    const cpfAlreadyExists = await this.userRepository.findByCpf(data.cpf);
 
-    if (userAlreadyExists) {
-      throw new Conflict('O usuário ja existe.');
+    if (emailAlreadyExists || cpfAlreadyExists) {
+      throw new Conflict(
+        'O usuário ja existe. Email ou CPF já estão sendo utilizados!',
+      );
     }
     const createdUser = await this.userRepository.create(data);
     return omit(createdUser, ['password']);

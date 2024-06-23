@@ -16,7 +16,8 @@ import { AbstractTransactionRepository } from '@/shared/container/providers/tran
 @injectable()
 export class UserRepository
   extends AbstractTransactionRepository<User>
-  implements IUserRepository {
+  implements IUserRepository
+{
   constructor(protected transaction: TransactionManager) {
     super(transaction, User);
   }
@@ -36,6 +37,9 @@ export class UserRepository
 
   async findByEmail(email: string) {
     return await this.userRepository.findOne({ where: { email } });
+  }
+  async findByCpf(cpf: string) {
+    return await this.userRepository.findOne({ where: { cpf } });
   }
 
   async listAll() {

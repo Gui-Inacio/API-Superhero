@@ -6,6 +6,7 @@ import { container } from '../../../../../shared/container/providers/transaction
 import { FindUserByIdService } from '../../../services/FindByIdService';
 import { FindUserByEmailService } from '../../../services/FindByEmail';
 import { ListAllUserService } from '../../../services/ListAllService';
+import { FindUserByCpfService } from '../../../services/FindByCpfService';
 import NotFound from '../../../../../shared/errors/notFound';
 export default class UsersController {
   public async createUser(req: Request, res: Response) {
@@ -30,6 +31,7 @@ export default class UsersController {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
   public async findByEmail(req: Request, res: Response): Promise<Response> {
     const { email } = req.params;
     const findUserByEmailService = container.resolve(FindUserByEmailService);
@@ -45,6 +47,23 @@ export default class UsersController {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  public async findByCpf(req: Request, res: Response): Promise<Response> {
+    const { cpf } = req.params;
+    const findUserByCpfService = container.resolve(FindUserByCpfService);
+    //console.log(email);
+
+    try {
+      const user = await findUserByCpfService.execute(cpf);
+      return res.status(200).json(user);
+    } catch (error) {
+      if (error instanceof NotFound) {
+        return res.status(404).json({ error: error.message });
+      }
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
   public async listAll(req: Request, res: Response): Promise<Response> {
     const listAllUserService = container.resolve(ListAllUserService);
 

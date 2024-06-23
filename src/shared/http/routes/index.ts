@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+//import { isAuth } from '@/shared/infra/http/middlewares/IsAuth';
+
 const routes = Router();
 
 // routes.get('/', (request, response) => {
@@ -12,6 +14,7 @@ routes.get('/', (_req, res) => {
     message: 'Ok',
     date: new Date(),
     serviceName: process.env.SERVICE_NAME,
+    //Token: _req.headers['authorization'],
   };
 
   res.status(200).send(data);

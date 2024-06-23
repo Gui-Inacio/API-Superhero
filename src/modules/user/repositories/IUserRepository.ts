@@ -12,6 +12,7 @@ export type UserUpdateInput = Pick<User, 'id' | 'password'>;
 interface IUserRepository {
   create(data: UserSaveImput): Promise<User>;
   findById(id: string): Promise<User | null>;
+  findByCpf(cpf: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
   listAll(): Promise<User[] | null | User>;
   updatePassword(data: UserUpdateInput): Promise<void>;
