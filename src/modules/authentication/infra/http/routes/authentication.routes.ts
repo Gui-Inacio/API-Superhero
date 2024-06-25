@@ -31,6 +31,28 @@ AuthenticationRouter.post(
       }
   */
 );
+AuthenticationRouter.post(
+  '/password/reset',
+  isAuth,
+  authenticationController.resetPassword,
+  /*  #swagger.tags = ['Authentication']
+      #swagger.summary = 'Realiza o reset da senha do usuário'
+      #swagger.security = [{ "bearerAuth": [] }]
+      #swagger.parameters['body'] = {
+        in: 'body',
+        schema: {
+          "password" : "123456",
+          "newPassword" : "111111",
+          "confirmPassword": "111111" 
+        }
+      }
+      #swagger.responses[200] = {
+        schema: {
+          "mensagem": "Senha atualizada com sucesso!"
+        }
+      }
+  */
+);
 // AuthenticationRouter.post(
 //   '/logout',
 //   isAuth,

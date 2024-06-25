@@ -3,6 +3,8 @@ import { container } from 'tsyringe';
 
 import { LoginService } from '@/modules/authentication/services/Login';
 import { LoginDTO } from '@/modules/authentication/dtos/LoginDTO';
+import { ResetPasswordDTO } from '@/modules/authentication/dtos/ResetPasswordDTO';
+import { ResetPasswordService } from '@/modules/authentication/services/resetPassword';
 
 const sessions: { [key: string]: boolean } = {};
 
@@ -19,6 +21,7 @@ export class AuthenticationController {
 
     return response.json(token);
   }
+
   async logout(request: Request, response: Response): Promise<Response> {
     const authHeader = request.headers['authorization'];
     if (!authHeader) {
@@ -38,6 +41,22 @@ export class AuthenticationController {
 
     return response.status(204).send('Logout feito com sucesso!'); // No Content
   }
+
+  async resetPassword(request: Request, response: Response) {
+    const requestValidated = new ResetPasswordDTO({
+      ...request.body,
+      ...response.locals,
+    });
+
+    const resetPasswordService = container.resolve(ResetPasswordService);
+
+    const mensagem = await resetPasswordService.execute(
+      requestValidated.getAll(),
+    );
+
+    return response.json(mensagem);
+  }
+
   async teste(request: Request, response: Response): Promise<Response> {
     //const authHeader = request.headers['authorization'];
     console.log('Deu certo');

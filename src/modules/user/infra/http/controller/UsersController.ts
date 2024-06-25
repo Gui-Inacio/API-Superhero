@@ -51,7 +51,6 @@ export default class UsersController {
   public async findByCpf(req: Request, res: Response): Promise<Response> {
     const { cpf } = req.params;
     const findUserByCpfService = container.resolve(FindUserByCpfService);
-    //console.log(email);
 
     try {
       const user = await findUserByCpfService.execute(cpf);
