@@ -6,6 +6,10 @@ export type UserSaveImput = StrictOmit<
   User,
   'id' | 'created_at' | 'updated_at'
 >;
+export type UserUpdate = StrictOmit<
+  User,
+  'updated_at' | 'created_at' | 'password'
+>;
 
 export type UserUpdateInput = Pick<User, 'id' | 'password'>;
 
@@ -17,6 +21,9 @@ interface IUserRepository {
   listAll(): Promise<User[] | null | User>;
   updatePassword(data: UserUpdateInput): Promise<void>;
   userLogin(email: string): Promise<User | null>;
+  findByEmailAndNotId(email: string, id: string): Promise<User | null>;
+  findByCpfAndNotId(cpf: string, id: string): Promise<User | null>;
+  update(data: UserUpdate): Promise<User | void>;
 }
 
 export { IUserRepository };

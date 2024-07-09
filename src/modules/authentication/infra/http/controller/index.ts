@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
+import { UpdateUserDTO } from '@/modules/authentication/dtos/UpdateUserDTO';
+import { UpdateUserService } from '@/modules/user/services/UpdateUserService';
 import { LoginService } from '@/modules/authentication/services/Login';
 import { LoginDTO } from '@/modules/authentication/dtos/LoginDTO';
 import { ResetPasswordDTO } from '@/modules/authentication/dtos/ResetPasswordDTO';
 import { ResetPasswordService } from '@/modules/authentication/services/resetPassword';
+import BadRequest from '@/shared/errors/badRequest';
 
 const sessions: { [key: string]: boolean } = {};
 
@@ -62,5 +65,22 @@ export class AuthenticationController {
     console.log('Deu certo');
 
     return response.status(204).send(); // No Content
+  }
+
+  async updateUser(request: Request, response: Response) {
+    const requestValidated = new UpdateUserDTO({
+      id: request.params.id,
+      ...request.body,
+    });
+
+    const { UserId } = response.locals;
+    if (UserId) {
+      throw new BadRequest('Id nao existe!');
+    }
+    const updateUserService = container.resolve(UpdateUserService);
+
+    const user = await updateUserService.execute(requestValidated.getAll());
+
+    return response.json(user);
   }
 }

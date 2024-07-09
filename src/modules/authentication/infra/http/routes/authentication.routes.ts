@@ -79,6 +79,12 @@ AuthenticationRouter.post(
 //       }
 //   */
 // );
+AuthenticationRouter.put(
+  '/update/:id',
+  isAuth,
+  authenticationController.updateUser,
+);
+
 AuthenticationRouter.get('/teste', isAuth, authenticationController.teste);
 
 export { AuthenticationRouter };

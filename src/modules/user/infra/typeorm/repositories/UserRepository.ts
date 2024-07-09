@@ -1,11 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { injectable } from 'tsyringe';
+import { Not } from 'typeorm';
 
 import { User } from '../entities/User';
 import {
   UserSaveImput,
   IUserRepository,
   UserUpdateInput,
+  UserUpdate,
 } from '../../../repositories/IUserRepository';
 
 import { hashPassword } from '@/shared/util/Password';
@@ -38,6 +40,7 @@ export class UserRepository
   async findByEmail(email: string) {
     return await this.userRepository.findOne({ where: { email } });
   }
+
   async findByCpf(cpf: string) {
     return await this.userRepository.findOne({ where: { cpf } });
   }
@@ -55,6 +58,30 @@ export class UserRepository
     );
   }
 
+  async update(data: UserUpdate) {
+    await this.userRepository.update(
+      { id: data.id },
+      {
+        ...data,
+      },
+    );
+  }
+  async findByEmailAndNotId(email: string, id: string) {
+    return await this.userRepository.findOne({
+      where: {
+        email,
+        id: Not(id),
+      },
+    });
+  }
+  async findByCpfAndNotId(cpf: string, id: string) {
+    return await this.userRepository.findOne({
+      where: {
+        cpf,
+        id: Not(id),
+      },
+    });
+  }
   async userLogin(email: string) {
     return await this.userRepository.findOne({
       where: { email },
@@ -62,4 +89,3 @@ export class UserRepository
     });
   }
 }
-//comentario
