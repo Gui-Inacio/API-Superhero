@@ -8,6 +8,7 @@ import { LoginDTO } from '@/modules/authentication/dtos/LoginDTO';
 import { ResetPasswordDTO } from '@/modules/authentication/dtos/ResetPasswordDTO';
 import { ResetPasswordService } from '@/modules/authentication/services/resetPassword';
 import BadRequest from '@/shared/errors/badRequest';
+import DeleteUserService from '@/modules/user/services/DeleteUserService';
 
 const sessions: { [key: string]: boolean } = {};
 
@@ -82,5 +83,16 @@ export class AuthenticationController {
     const user = await updateUserService.execute(requestValidated.getAll());
 
     return response.json(user);
+  }
+  async delete(request: Request, response: Response) {
+    // Validando a solicitação
+    const id = request.params.id;
+    const deleteUserService = container.resolve(DeleteUserService);
+
+    // Executando o serviço de exclusão
+    await deleteUserService.execute(id);
+
+    // Retornando uma resposta de sucesso
+    return response.status(204).send('Excluido com sucesso');
   }
 }

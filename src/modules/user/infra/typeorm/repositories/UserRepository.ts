@@ -88,4 +88,7 @@ export class UserRepository
       select: ['id', 'email', 'name', 'password'],
     });
   }
+  async delete(id: string) {
+    await this.userRepository.delete(id);
+  }
 }

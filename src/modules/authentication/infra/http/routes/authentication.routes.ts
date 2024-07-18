@@ -86,5 +86,10 @@ AuthenticationRouter.put(
 );
 
 AuthenticationRouter.get('/teste', isAuth, authenticationController.teste);
+AuthenticationRouter.delete(
+  '/delete/:id',
+  isAuth,
+  authenticationController.delete,
+);
 
 export { AuthenticationRouter };

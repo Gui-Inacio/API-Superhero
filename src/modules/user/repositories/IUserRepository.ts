@@ -24,6 +24,7 @@ interface IUserRepository {
   findByEmailAndNotId(email: string, id: string): Promise<User | null>;
   findByCpfAndNotId(cpf: string, id: string): Promise<User | null>;
   update(data: UserUpdate): Promise<User | void>;
+  delete(id: string): Promise<User | void>;
 }
 
 export { IUserRepository };
