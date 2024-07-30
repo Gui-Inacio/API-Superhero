@@ -93,6 +93,8 @@ export class AuthenticationController {
     await deleteUserService.execute(id);
 
     // Retornando uma resposta de sucesso
-    return response.status(204).send('Excluido com sucesso');
+    return response
+      .status(204)
+      .json({ mensage: 'Usuário excluido com sucesso' });
   }
 }
