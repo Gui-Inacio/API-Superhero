@@ -1,10 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
+
+import { HeroAttribute } from './HeroAttribute';
+
+import { AbstractEntity } from '@/shared/infra/typeorm/entities/AbstractEntities';
 
 @Entity('attribute')
-export class Attribute {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+export class Attribute extends AbstractEntity {
+  @Column({ name: 'attribute_name' })
+  attributeName: string;
 
-  @Column()
-  attribute_name: string;
+  @OneToMany(() => HeroAttribute, (heroAttribute) => heroAttribute.attribute)
+  heroAttributes: HeroAttribute[];
 }

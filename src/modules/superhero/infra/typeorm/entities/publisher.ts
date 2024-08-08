@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Superhero } from './Superhero';
 
 @Entity('publisher')
 export class Publisher {
@@ -6,5 +8,8 @@ export class Publisher {
   id: string;
 
   @Column()
-  publisher_name: string;
+  publisher: string;
+
+  @OneToMany(() => Superhero, (superhero) => superhero.publisher)
+  superhero: Superhero[];
 }

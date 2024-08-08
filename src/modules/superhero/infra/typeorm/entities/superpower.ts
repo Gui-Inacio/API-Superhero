@@ -5,6 +5,6 @@ export class Superpower {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  power_name: string;
+  @Column({ name: 'power_name' })
+  powerName: string;
 }

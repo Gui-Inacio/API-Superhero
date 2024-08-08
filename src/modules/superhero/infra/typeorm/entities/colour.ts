@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Superhero } from './Superhero';
 
 @Entity('colour')
 export class Colour {
@@ -7,4 +9,7 @@ export class Colour {
 
   @Column()
   colour: string;
+
+  @OneToMany(() => Superhero, (superhero) => superhero.colour)
+  superhero: Superhero[];
 }
