@@ -12,7 +12,7 @@ import { Gender } from './Gender';
 import { Colour } from './Colour';
 import { Race } from './Race';
 import { Publisher } from './Publisher';
-import { Alligment } from './Alignment';
+import { Allignment } from './Alignment'; //caso der algo errado, retornar nome da variavel para Alligment
 import { Superpower } from './Superpower';
 import { HeroAttribute } from './HeroAttribute';
 
@@ -50,7 +50,7 @@ export class Superhero extends AbstractEntity {
   @JoinColumn({ name: 'publisher_id' })
   publisher: Publisher;
 
-  @ManyToOne(() => Alligment, (alligment) => alligment.superhero, {
+  @ManyToOne(() => Allignment, (allignment) => allignment.superhero, {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'alligment_id' })
