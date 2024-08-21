@@ -11,6 +11,7 @@ interface IPublisherRepository {
   findById(id: string): Promise<Publisher | null>;
   listAll(): Promise<Publisher[] | null | Publisher>;
   delete(id: string): Promise<Publisher | void>;
+  update(data: Publisher): Promise<Publisher | void>;
 }
 
 export { IPublisherRepository };

@@ -1,5 +1,7 @@
 import { injectable } from 'tsyringe';
+
 import { Superhero } from '../entities/Superhero';
+
 import {
   ISuperheroRepository,
   SuperheroSaveInput,
@@ -13,6 +15,10 @@ export class SuperheroRepository
   extends AbstractTransactionRepository<Superhero>
   implements ISuperheroRepository
 {
+  async create(data: SuperheroSaveInput) {
+    const user = this.userRepository.create(data);
+    return await this.userRepository.save(user);
+  }
   constructor(protected transaction: TransactionManager) {
     super(transaction, Superhero);
   }
@@ -29,9 +35,4 @@ export class SuperheroRepository
     throw new Error('Method not implemented.');
   }
   private readonly userRepository = AppDataSource.getRepository(Superhero);
-
-  async create(data: SuperheroSaveInput) {
-    const user = this.userRepository.create(data);
-    return await this.userRepository.save(user);
-  }
 }
