@@ -7,6 +7,9 @@ import { ListAllColourService } from '@/modules/superhero/services/colourService
 import NotFound from '@/shared/errors/notFound';
 import DeleteColourService from '@/modules/superhero/services/colourServices/DeleteColourService';
 import { FindColourByIdService } from '@/modules/superhero/services/colourServices/FindColourByIdService';
+import { UpdateColourDTO } from '@/modules/superhero/dtos/UpdateColourDTO';
+import BadRequest from '@/shared/errors/badRequest';
+import { UpdateColourService } from '@/modules/superhero/services/colourServices/UpdateColourService';
 
 export default class ColourController {
   public async createColour(req: Request, res: Response) {
@@ -44,6 +47,18 @@ export default class ColourController {
       }
       return res.status(500).json({ error: 'Internal Server Error' });
     }
+  }
+  async updateColour(request: Request, response: Response) {
+    const requestValidated = new UpdateColourDTO({
+      id: request.params.id,
+      ...request.body,
+    });
+
+    const updateColourService = container.resolve(UpdateColourService);
+
+    const colour = await updateColourService.execute(requestValidated.getAll());
+
+    return response.json(colour);
   }
   async delete(request: Request, response: Response) {
     // Validando a solicitação

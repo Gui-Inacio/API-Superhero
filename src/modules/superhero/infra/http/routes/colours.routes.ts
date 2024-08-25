@@ -12,5 +12,6 @@ colourRouter.post('/create', colourController.createColour);
 colourRouter.get('/search/:id', isAuth, colourController.findById);
 colourRouter.get('/', isAuth, colourController.listAll);
 colourRouter.delete('/delete/:id', isAuth, colourController.delete);
+colourRouter.put('/update/:id', isAuth, colourController.updateColour);
 
 export { colourRouter };

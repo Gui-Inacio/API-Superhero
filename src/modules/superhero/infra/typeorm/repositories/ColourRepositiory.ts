@@ -16,13 +16,13 @@ export class ColourRepository
   implements IColourRepository
 {
   private readonly colourRepository = AppDataSource.getRepository(Colour);
+  constructor(protected transaction: TransactionManager) {
+    super(transaction, Colour);
+  }
 
   async create(data: ColourSaveInput) {
     const colour = this.colourRepository.create(data);
     return await this.colourRepository.save(colour);
-  }
-  constructor(protected transaction: TransactionManager) {
-    super(transaction, Colour);
   }
   async findById(id: string) {
     return await this.colourRepository.findOne({ where: { id } });
@@ -31,7 +31,7 @@ export class ColourRepository
     return await this.colourRepository.find();
   }
   async update(data: Colour) {
-    throw new Error('Method not implemented.');
+    await this.colourRepository.update({ id: data.id }, data);
   }
   async delete(id: string) {
     await this.colourRepository.delete(id);

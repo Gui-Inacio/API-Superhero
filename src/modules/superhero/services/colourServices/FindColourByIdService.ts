@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { IColourRepository } from '../../repositories/IColourRepository';
 
-import Conflict from '@/shared/errors/conflict';
+import NotFound from '@/shared/errors/notFound';
 
 @injectable()
 export class FindColourByIdService {
@@ -16,7 +16,7 @@ export class FindColourByIdService {
     const colour = await this.colourRepository.findById(id);
 
     if (!colour) {
-      throw new Conflict('Colour not found!.');
+      throw new NotFound('Colour not found!.');
     }
 
     return colour;
