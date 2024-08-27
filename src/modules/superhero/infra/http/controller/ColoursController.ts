@@ -8,7 +8,7 @@ import NotFound from '@/shared/errors/notFound';
 import DeleteColourService from '@/modules/superhero/services/colourServices/DeleteColourService';
 import { FindColourByIdService } from '@/modules/superhero/services/colourServices/FindColourByIdService';
 import { UpdateColourDTO } from '@/modules/superhero/dtos/UpdateColourDTO';
-import BadRequest from '@/shared/errors/badRequest';
+//import BadRequest from '@/shared/errors/badRequest';
 import { UpdateColourService } from '@/modules/superhero/services/colourServices/UpdateColourService';
 
 export default class ColourController {
@@ -43,7 +43,7 @@ export default class ColourController {
       return res.status(200).json(colour);
     } catch (error) {
       if (error instanceof NotFound) {
-        return res.status(404).json({ error: error.message });
+        throw new NotFound('Cor não encontrada!');
       }
       return res.status(500).json({ error: 'Internal Server Error' });
     }

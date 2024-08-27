@@ -11,6 +11,7 @@ import routes from './routes';
 
 import { AuthenticationRouter } from '@/modules/authentication/infra/http/routes/authentication.routes';
 import { colourRouter } from '@/modules/superhero/infra/http/routes/colours.routes';
+import { genderRouter } from '@/modules/superhero/infra/http/routes/genders.routes';
 
 const app = express();
 //const router = Router();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/users', userRouter);
 app.use('/login', AuthenticationRouter);
 app.use('/colour', colourRouter);
+app.use('/gender', genderRouter);
 
 app.use(ErrorRequestHandler);
 // app.use((error: Error, request: Request, response:Response, next: NextFunction)=> {
