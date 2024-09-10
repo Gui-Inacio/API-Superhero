@@ -10,7 +10,7 @@ interface IHeroAttributeRepository {
   create(data: HeroAttributeSaveInput): Promise<HeroAttribute>;
   findById(id: string): Promise<HeroAttribute | null>;
   listAll(): Promise<HeroAttribute[] | null | HeroAttribute>;
-  delete(id: string): Promise<HeroAttribute | void>;
+  delete(id: string): Promise<void>;
 }
 
 export { IHeroAttributeRepository };

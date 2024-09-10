@@ -9,9 +9,9 @@ export type ColourUpdate = StrictOmit<Colour, 'superhero'>;
 interface IColourRepository {
   create(data: ColourSaveInput): Promise<Colour>;
   findById(id: string): Promise<Colour | null>;
-  listAll(): Promise<Colour[] | null | Colour>;
+  listAll(): Promise<Colour[]>;
   delete(id: string): Promise<Colour | void>;
-  update(data: ColourUpdate): Promise<Colour | void>;
+  update(data: ColourUpdate): Promise<void>;
 }
 
 export { IColourRepository };

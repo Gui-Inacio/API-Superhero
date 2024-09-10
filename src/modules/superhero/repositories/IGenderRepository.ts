@@ -9,9 +9,9 @@ export type GenderUpdate = StrictOmit<Gender, 'superhero'>;
 interface IGenderRepository {
   create(data: GenderSaveInput): Promise<Gender>;
   findById(id: string): Promise<Gender | null>;
-  listAll(): Promise<Gender[] | null | Gender>;
+  listAll(): Promise<Gender[]>;
   delete(id: string): Promise<Gender | void>;
-  update(data: GenderUpdate): Promise<Gender>;
+  update(data: GenderUpdate): Promise<void>;
 }
 
 export { IGenderRepository };

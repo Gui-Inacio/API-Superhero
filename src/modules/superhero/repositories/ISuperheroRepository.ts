@@ -14,7 +14,7 @@ interface ISuperheroRepository {
   findById(id: string): Promise<Superhero | null>;
   listAll(): Promise<Superhero[] | null | Superhero>;
   update(data: Superhero): Promise<Superhero | void>;
-  delete(id: string): Promise<Superhero | void>;
+  delete(id: string): Promise<void>;
 }
 
 export { ISuperheroRepository };

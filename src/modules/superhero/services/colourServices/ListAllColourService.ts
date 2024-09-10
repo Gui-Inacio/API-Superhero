@@ -3,8 +3,6 @@ import { inject, injectable } from 'tsyringe';
 
 import { IColourRepository } from '../../repositories/IColourRepository';
 
-import Conflict from '@/shared/errors/conflict';
-
 @injectable()
 export class ListAllColourService {
   constructor(
@@ -13,12 +11,6 @@ export class ListAllColourService {
   ) {}
 
   async execute() {
-    const colour = await this.colourRepository.listAll();
-
-    if (!colour) {
-      throw new Conflict('No colours registered yet!');
-    }
-
-    return colour;
+    return await this.colourRepository.listAll();
   }
 }

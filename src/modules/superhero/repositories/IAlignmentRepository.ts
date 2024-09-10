@@ -9,8 +9,8 @@ export type AllignmentSaveInput = StrictOmit<Allignment, 'id'>;
 interface IAllignmentRepository {
   create(data: AllignmentSaveInput): Promise<Allignment>;
   findById(id: string): Promise<Allignment | null>;
-  listAll(): Promise<Allignment[] | null | Allignment>;
-  delete(id: string): Promise<Allignment | void>;
+  listAll(): Promise<Allignment[]>;
+  delete(id: string): Promise<void>;
 }
 
 export { IAllignmentRepository };

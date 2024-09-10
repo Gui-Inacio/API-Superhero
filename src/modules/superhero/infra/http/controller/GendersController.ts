@@ -21,18 +21,10 @@ export default class GenderController {
 
     return res.status(201).json(createdGender);
   }
-  public async listAll(req: Request, res: Response): Promise<Response> {
+  public async listAll(req: Request, res: Response) {
     const listAllGenderService = container.resolve(ListAllGenderService);
-
-    try {
-      const gender = await listAllGenderService.execute();
-      return res.status(200).json(gender);
-    } catch (error) {
-      if (error instanceof NotFound) {
-        return res.status(404).json({ error: error.message });
-      }
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
+    const gender = await listAllGenderService.execute();
+    return res.status(200).json(gender);
   }
   public async findById(req: Request, res: Response) {
     const { id } = req.params;
@@ -69,7 +61,7 @@ export default class GenderController {
 
     // Retornando uma resposta de sucesso
     return response
-      .status(204)
+      .status(200)
       .json({ mensage: 'Genero excluido com sucesso' });
   }
 }

@@ -7,6 +7,7 @@ import { AbstractTransactionRepository } from '@/shared/container/providers/tran
 import { AppDataSource } from '@/shared/infra/typeorm';
 import {
   ColourSaveInput,
+  ColourUpdate,
   IColourRepository,
 } from '@/modules/superhero/repositories/IColourRepository';
 
@@ -30,7 +31,7 @@ export class ColourRepository
   async listAll() {
     return await this.colourRepository.find();
   }
-  async update(data: Colour) {
+  async update(data: ColourUpdate) {
     await this.colourRepository.update({ id: data.id }, data);
   }
   async delete(id: string) {

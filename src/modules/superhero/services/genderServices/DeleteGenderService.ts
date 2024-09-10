@@ -14,7 +14,7 @@ class DeleteGenderService {
     const gender = await this.genderRepository.findById(id);
 
     if (!gender) {
-      throw new Error('Gender not found');
+      throw new Error('Gender not found!');
     }
 
     await this.genderRepository.delete(id);

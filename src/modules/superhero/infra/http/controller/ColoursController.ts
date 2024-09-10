@@ -69,6 +69,6 @@ export default class ColourController {
     await deleteColourService.execute(id);
 
     // Retornando uma resposta de sucesso
-    return response.status(204).json({ mensage: 'Cor excluida com sucesso' });
+    return response.status(200).json({ mensage: 'Cor excluida com sucesso' });
   }
 }

@@ -94,7 +94,7 @@ export class AuthenticationController {
 
     // Retornando uma resposta de sucesso
     return response
-      .status(204)
+      .status(200)
       .json({ mensage: 'Usuário excluido com sucesso' });
   }
 }

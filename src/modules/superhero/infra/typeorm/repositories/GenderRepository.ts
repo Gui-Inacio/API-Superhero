@@ -7,6 +7,7 @@ import { AbstractTransactionRepository } from '@/shared/container/providers/tran
 import { AppDataSource } from '@/shared/infra/typeorm';
 import {
   GenderSaveInput,
+  GenderUpdate,
   IGenderRepository,
 } from '@/modules/superhero/repositories/IGenderRepository';
 
@@ -30,7 +31,7 @@ export class GenderRepository
   async listAll() {
     return await this.genderRepository.find();
   }
-  async update(data: Gender) {
+  async update(data: GenderUpdate) {
     await this.genderRepository.update({ id: data.id }, data);
   }
   async delete(id: string) {

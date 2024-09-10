@@ -3,8 +3,6 @@ import { inject, injectable } from 'tsyringe';
 
 import { IGenderRepository } from '../../repositories/IGenderRepository';
 
-import Conflict from '@/shared/errors/conflict';
-
 @injectable()
 export class ListAllGenderService {
   constructor(
@@ -13,12 +11,6 @@ export class ListAllGenderService {
   ) {}
 
   async execute() {
-    const gender = await this.genderRepository.listAll();
-
-    if (!gender) {
-      throw new Conflict('No genders registered yet!');
-    }
-
-    return gender;
+    return await this.genderRepository.listAll();
   }
 }

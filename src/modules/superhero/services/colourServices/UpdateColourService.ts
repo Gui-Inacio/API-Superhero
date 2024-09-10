@@ -26,7 +26,6 @@ export class UpdateColourService {
       id: colour.id,
       colour: data.colour,
     });
-    const updatedColour = await this.findByIdColourService.execute(colour.id);
-    return updatedColour;
+    return await this.colourRepository.findById(colour.id);
   }
 }

@@ -9,8 +9,8 @@ export type AttributeSaveInput = StrictOmit<Attribute, 'id'>;
 interface IAttributeRepository {
   create(data: AttributeSaveInput): Promise<Attribute>;
   findById(id: string): Promise<Attribute | null>;
-  listAll(): Promise<Attribute[] | null | Attribute>;
-  delete(id: string): Promise<Attribute | void>;
+  listAll(): Promise<Attribute[]>;
+  delete(id: string): Promise<void>;
 }
 
 export { IAttributeRepository };
