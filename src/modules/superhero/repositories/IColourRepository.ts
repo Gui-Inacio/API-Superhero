@@ -10,8 +10,8 @@ interface IColourRepository {
   create(data: ColourSaveInput): Promise<Colour>;
   findById(id: string): Promise<Colour | null>;
   listAll(): Promise<Colour[]>;
-  delete(id: string): Promise<Colour | void>;
   update(data: ColourUpdate): Promise<void>;
+  delete(id: string): Promise<Colour | void>;
 }
 
 export { IColourRepository };

@@ -2,14 +2,14 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Superhero } from './Superhero';
 
-@Entity('alligment')
-export class Allignment {
+@Entity('alignment')
+export class Alignment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  alligment: string;
+  alignment: string;
 
-  @OneToMany(() => Superhero, (superhero) => superhero.alligment)
+  @OneToMany(() => Superhero, (superhero) => superhero.alignment)
   superhero: Superhero[];
 }

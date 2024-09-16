@@ -1,16 +1,17 @@
-import { Allignment } from '../infra/typeorm/entities/Alignment';
+import { DeleteResult } from 'typeorm';
+
+import { Alignment } from '../infra/typeorm/entities/Alignment';
 
 import { StrictOmit } from '@/shared/util/types/StrictOmitType';
 
-export type AllignmentSaveInput = StrictOmit<Allignment, 'id'>;
+export type AlignmentSaveInput = StrictOmit<Alignment, 'id'>;
+export type AlignmentUpdate = StrictOmit<Alignment, 'superhero'>;
 
-//export type SuperheroUpdateInput = Pick<Superhero, 'id'>;
-
-interface IAllignmentRepository {
-  create(data: AllignmentSaveInput): Promise<Allignment>;
-  findById(id: string): Promise<Allignment | null>;
-  listAll(): Promise<Allignment[]>;
-  delete(id: string): Promise<void>;
+interface IAlignmentRepository {
+  create(data: AlignmentSaveInput): Promise<Alignment>;
+  findById(id: string): Promise<Alignment | null>;
+  listAll(): Promise<Alignment[]>;
+  delete(id: string): Promise<DeleteResult>;
 }
 
-export { IAllignmentRepository };
+export { IAlignmentRepository };
