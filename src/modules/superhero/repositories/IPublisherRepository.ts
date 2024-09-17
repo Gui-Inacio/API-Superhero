@@ -10,7 +10,7 @@ interface IPublisherRepository {
   create(data: PublisherSaveInput): Promise<Publisher>;
   findById(id: string): Promise<Publisher | null>;
   listAll(): Promise<Publisher[] | null | Publisher>;
-  delete(id: string): Promise<Publisher | void>;
+  delete(id: string): Promise<void>;
   update(data: Publisher): Promise<void>;
 }
 

@@ -4,7 +4,7 @@ import { inject, injectable } from 'tsyringe';
 import { IColourRepository } from '../../repositories/IColourRepository';
 
 @injectable()
-class DeleteColourService {
+export class DeleteColourService {
   constructor(
     @inject('ColourRepository')
     private readonly colourRepository: IColourRepository,
@@ -20,5 +20,3 @@ class DeleteColourService {
     await this.colourRepository.delete(id);
   }
 }
-
-export default DeleteColourService;

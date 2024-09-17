@@ -10,7 +10,7 @@ interface IRaceRepository {
   create(data: RaceSaveInput): Promise<Race>;
   findById(id: string): Promise<Race | null>;
   listAll(): Promise<Race[]>;
-  delete(id: string): Promise<Race | void>;
+  delete(id: string): Promise<void>;
   update(data: RaceUpdate): Promise<void>;
 }
 

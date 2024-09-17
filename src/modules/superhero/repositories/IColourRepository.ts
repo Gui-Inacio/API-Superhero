@@ -11,7 +11,7 @@ interface IColourRepository {
   findById(id: string): Promise<Colour | null>;
   listAll(): Promise<Colour[]>;
   update(data: ColourUpdate): Promise<void>;
-  delete(id: string): Promise<Colour | void>;
+  delete(id: string): Promise<void>;
 }
 
 export { IColourRepository };
