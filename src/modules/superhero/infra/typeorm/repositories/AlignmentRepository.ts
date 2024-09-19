@@ -31,7 +31,7 @@ export class AlignmentRepository
     return await this.alignmentRepository.find();
   }
   async update(data: AlignmentUpdate) {
-    return await this.alignmentRepository.update({ id: data.id }, data);
+    await this.alignmentRepository.update({ id: data.id }, data);
   }
   async delete(id: string) {
     await this.alignmentRepository.delete(id);

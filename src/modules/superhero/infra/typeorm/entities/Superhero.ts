@@ -12,7 +12,7 @@ import { Gender } from './Gender';
 import { Colour } from './Colour';
 import { Race } from './Race';
 import { Publisher } from './Publisher';
-import { Alignment } from './Alignment'; //caso der algo errado, retornar nome da variavel para Alligment
+import { Alignment } from './Alignment'; //caso der algo errado, retornar nome da variavel para Alignment
 import { Superpower } from './Superpower';
 import { HeroAttribute } from './HeroAttribute';
 
