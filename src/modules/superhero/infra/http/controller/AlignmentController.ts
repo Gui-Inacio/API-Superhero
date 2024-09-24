@@ -6,6 +6,9 @@ import { CreateAlignmentService } from '@/modules/superhero/services/alignmentSe
 import { ListAllAlignmentService } from '@/modules/superhero/services/alignmentServices/ListAllAlignmentService';
 import { FindAlignmentByIdService } from '@/modules/superhero/services/alignmentServices/FindAlignmentByIdService';
 import NotFound from '@/shared/errors/notFound';
+import { updateAlignmentDTO } from '@/modules/superhero/dtos/UpdateAlignmentDTO';
+import { UpdateAlignmentService } from '@/modules/superhero/services/alignmentServices/UpdateAlignmentService';
+import { DeleteAlignmentService } from '@/modules/superhero/services/alignmentServices/DeleteAlignmentService';
 export default class AlignmentController {
   public async createAlignment(req: Request, res: Response) {
     const requestValidated = new CreateAlignmentDTO(req.body);
@@ -32,5 +35,25 @@ export default class AlignmentController {
       throw new NotFound('Alignment not found!');
     }
     return res.status(200).json(alignment);
+  }
+  public async updateAlignment(req: Request, res: Response) {
+    const requestValidated = new updateAlignmentDTO({
+      id: req.params.id,
+      ...req.body,
+    });
+
+    const updateAlignmentService = container.resolve(UpdateAlignmentService);
+
+    const alignment = await updateAlignmentService.execute(
+      requestValidated.getAll(),
+    );
+    return res.json(alignment);
+  }
+  public async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    const deleteAlignmentService = container.resolve(DeleteAlignmentService);
+
+    await deleteAlignmentService.execute(id);
+    return res.status(200).json({ message: 'Alignment excluido com sucesso' });
   }
 }

@@ -10,5 +10,7 @@ const alignmentController = new AlignmentController();
 alignmentRouter.post('/create', alignmentController.createAlignment);
 alignmentRouter.get('/', alignmentController.listAll, isAuth);
 alignmentRouter.get('/:id', alignmentController.findById, isAuth);
+alignmentRouter.put('/update/:id', alignmentController.updateAlignment, isAuth);
+alignmentRouter.delete('/delete/:id', alignmentController.delete, isAuth);
 
 export { alignmentRouter };

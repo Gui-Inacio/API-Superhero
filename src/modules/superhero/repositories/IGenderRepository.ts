@@ -10,8 +10,8 @@ interface IGenderRepository {
   create(data: GenderSaveInput): Promise<Gender>;
   findById(id: string): Promise<Gender | null>;
   listAll(): Promise<Gender[]>;
-  delete(id: string): Promise<void>;
   update(data: GenderUpdate): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 
 export { IGenderRepository };

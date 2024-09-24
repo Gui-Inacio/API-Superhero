@@ -39,7 +39,7 @@ export default class GenderController {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
-  async updateGender(request: Request, response: Response) {
+  public async updateGender(request: Request, response: Response) {
     const requestValidated = new UpdateGenderDTO({
       id: request.params.id,
       ...request.body,
@@ -51,7 +51,7 @@ export default class GenderController {
 
     return response.json(gender);
   }
-  async delete(request: Request, response: Response) {
+  public async delete(request: Request, response: Response) {
     // Validando a solicitação
     const id = request.params.id;
     const deleteGenderService = container.resolve(DeleteGenderService);
@@ -62,6 +62,6 @@ export default class GenderController {
     // Retornando uma resposta de sucesso
     return response
       .status(200)
-      .json({ mensage: 'Genero excluido com sucesso' });
+      .json({ message: 'Genero excluido com sucesso' });
   }
 }
