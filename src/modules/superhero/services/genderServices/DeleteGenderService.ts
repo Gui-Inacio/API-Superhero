@@ -3,22 +3,22 @@ import { inject, injectable } from 'tsyringe';
 
 import { IGenderRepository } from '../../repositories/IGenderRepository';
 
+import NotFound from '@/shared/errors/notFound';
+
 @injectable()
-class DeleteGenderService {
+export class DeleteGenderService {
   constructor(
     @inject('GenderRepository')
     private readonly genderRepository: IGenderRepository,
   ) {}
 
-  async execute(id: string): Promise<void> {
+  async execute(id: string) {
     const gender = await this.genderRepository.findById(id);
 
     if (!gender) {
-      throw new Error('Gender not found!');
+      throw new NotFound('Gender not found');
     }
 
     await this.genderRepository.delete(id);
   }
 }
-
-export default DeleteGenderService;
