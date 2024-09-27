@@ -7,7 +7,7 @@ import { FindRaceByIdService } from '@/modules/superhero/services/raceServices/F
 import NotFound from '@/shared/errors/notFound';
 import { ListAllRaceService } from '@/modules/superhero/services/raceServices/ListAllRaceService';
 import DeleteRaceService from '@/modules/superhero/services/raceServices/DeleteRaceService';
-import { UpdatedRaceDTO } from '@/modules/superhero/dtos/UpdateRaceDTO';
+import { UpdateRaceDTO } from '@/modules/superhero/dtos/UpdateRaceDTO';
 import { UpdateRaceService } from '@/modules/superhero/services/raceServices/UpdateRaceService';
 
 export default class RaceController {
@@ -38,7 +38,7 @@ export default class RaceController {
     return res.status(200).json(race);
   }
   public async update(req: Request, res: Response) {
-    const requestValidated = new UpdatedRaceDTO({
+    const requestValidated = new UpdateRaceDTO({
       id: req.params.id,
       ...req.body,
     });

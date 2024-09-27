@@ -5,11 +5,10 @@ import { CreateGenderDTO } from '@/modules/superhero/dtos/CreateGenderDTO';
 import { container } from '@/shared/container/providers/transaction-menager/ContainerResolveTransaction';
 import NotFound from '@/shared/errors/notFound';
 import { ListAllGenderService } from '@/modules/superhero/services/genderServices/ListAllGenderService';
-import DeleteGenderService from '@/modules/superhero/services/genderServices/DeleteGenderService';
 import { UpdateGenderDTO } from '@/modules/superhero/dtos/UpdateGenderDTO';
 import { UpdateGenderService } from '@/modules/superhero/services/genderServices/UpdateGenderService';
 import { FindGenderByIdService } from '@/modules/superhero/services/genderServices/FindGenderByIdService';
-//import BadRequest from '@/shared/errors/badRequest';
+import { DeleteGenderService } from '@/modules/superhero/services/genderServices/DeleteGenderService';
 
 export default class GenderController {
   public async createGender(req: Request, res: Response) {

@@ -7,7 +7,7 @@ const updateRaceSchema = z.object({
   race: z.string(),
 });
 
-export class UpdatedRaceDTO extends AbstractDTO<typeof updateRaceSchema> {
+export class UpdateRaceDTO extends AbstractDTO<typeof updateRaceSchema> {
   protected rules() {
     return updateRaceSchema;
   }
