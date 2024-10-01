@@ -14,6 +14,7 @@ import { colourRouter } from '@/modules/superhero/infra/http/routes/colours.rout
 import { genderRouter } from '@/modules/superhero/infra/http/routes/genders.routes';
 import { raceRouter } from '@/modules/superhero/infra/http/routes/race.routes';
 import { alignmentRouter } from '@/modules/superhero/infra/http/routes/alignment.routes';
+import { publisherRouter } from '@/modules/superhero/infra/http/routes/publisher.routes';
 
 const app = express();
 //const router = Router();
@@ -28,6 +29,7 @@ app.use('/colour', colourRouter);
 app.use('/gender', genderRouter);
 app.use('/race', raceRouter);
 app.use('/alignment', alignmentRouter);
+app.use('/publisher', publisherRouter);
 
 app.use(ErrorRequestHandler);
 // app.use((error: Error, request: Request, response:Response, next: NextFunction)=> {
