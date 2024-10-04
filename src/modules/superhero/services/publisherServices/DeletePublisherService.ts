@@ -5,7 +5,7 @@ import { IPublisherRepository } from '../../repositories/IPublisherRepository';
 import NotFound from '@/shared/errors/notFound';
 
 @injectable()
-class DeletePublisherService {
+export class DeletePublisherService {
   constructor(
     @inject('PublisherRepository')
     private readonly publisherRepository: IPublisherRepository,
@@ -13,10 +13,8 @@ class DeletePublisherService {
   async execute(id: string) {
     const publisher = await this.publisherRepository.findById(id);
     if (!publisher) {
-      throw new NotFound('Publisher not found');
+      throw new NotFound('Publisher not found.');
     }
     await this.publisherRepository.delete(id);
   }
 }
-
-export default DeletePublisherService;

@@ -14,6 +14,8 @@ import { IAlignmentRepository } from '@/modules/superhero/repositories/IAlignmen
 import { AlignmentRepository } from '@/modules/superhero/infra/typeorm/repositories/AlignmentRepository';
 import { IPublisherRepository } from '@/modules/superhero/repositories/IPublisherRepository';
 import { PublisherRepository } from '@/modules/superhero/infra/typeorm/repositories/PublisherRepository';
+import { AttributeRepository } from '@/modules/superhero/infra/typeorm/repositories/AttributeRepository';
+import { IAttributeRepository } from '@/modules/superhero/repositories/IAttributeRepository';
 
 container.register<IUserRepository>('UserRepository', UserRepository);
 container.register<IColourRepository>('ColourRepository', ColourRepository);
@@ -26,4 +28,8 @@ container.register<IAlignmentRepository>(
 container.register<IPublisherRepository>(
   'PublisherRepository',
   PublisherRepository,
+);
+container.register<IAttributeRepository>(
+  'AttributeRepository',
+  AttributeRepository,
 );

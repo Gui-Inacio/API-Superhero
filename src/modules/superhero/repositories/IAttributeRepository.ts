@@ -2,7 +2,10 @@ import { Attribute } from '../infra/typeorm/entities/Attribute';
 
 import { StrictOmit } from '@/shared/util/types/StrictOmitType';
 
-export type AttributeSaveInput = StrictOmit<Attribute, 'id'>;
+export type AttributeSaveInput = StrictOmit<
+  Attribute,
+  'id' | 'generateUuid' | 'heroAttributes' | 'updatedAt' | 'createdAt'
+>;
 
 export type AttributeUpdate = StrictOmit<Attribute, 'heroAttributes'>;
 
