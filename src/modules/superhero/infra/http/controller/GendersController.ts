@@ -28,15 +28,12 @@ export default class GenderController {
   public async findById(req: Request, res: Response) {
     const { id } = req.params;
     const findGenderByIdService = container.resolve(FindGenderByIdService);
-    try {
-      const gender = await findGenderByIdService.execute(id);
-      return res.status(200).json(gender);
-    } catch (error) {
-      if (error instanceof NotFound) {
-        throw new NotFound('Genero não encontrado!');
-      }
-      return res.status(500).json({ error: 'Internal Server Error' });
+
+    const gender = await findGenderByIdService.execute(id);
+    if (!gender) {
+      throw new NotFound('Gender not found!');
     }
+    return res.status(200).json(gender);
   }
   public async updateGender(request: Request, response: Response) {
     const requestValidated = new UpdateGenderDTO({
