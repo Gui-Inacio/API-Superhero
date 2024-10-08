@@ -8,9 +8,9 @@ const alignmentRouter = Router();
 const alignmentController = new AlignmentController();
 
 alignmentRouter.post('/create', alignmentController.createAlignment);
-alignmentRouter.get('/', alignmentController.listAll, isAuth);
-alignmentRouter.get('/:id', alignmentController.findById, isAuth);
-alignmentRouter.put('/update/:id', alignmentController.updateAlignment, isAuth);
-alignmentRouter.delete('/delete/:id', alignmentController.delete, isAuth);
+alignmentRouter.get('/', isAuth, alignmentController.listAll);
+alignmentRouter.get('/:id', isAuth, alignmentController.findById);
+alignmentRouter.put('/update/:id', isAuth, alignmentController.updateAlignment);
+alignmentRouter.delete('/delete/:id', isAuth, alignmentController.delete);
 
 export { alignmentRouter };

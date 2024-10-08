@@ -15,6 +15,7 @@ import { genderRouter } from '@/modules/superhero/infra/http/routes/genders.rout
 import { raceRouter } from '@/modules/superhero/infra/http/routes/race.routes';
 import { alignmentRouter } from '@/modules/superhero/infra/http/routes/alignment.routes';
 import { publisherRouter } from '@/modules/superhero/infra/http/routes/publisher.routes';
+import { attributeRouter } from '@/modules/superhero/infra/http/routes/attribute.routes';
 
 const app = express();
 //const router = Router();
@@ -30,6 +31,7 @@ app.use('/gender', genderRouter);
 app.use('/race', raceRouter);
 app.use('/alignment', alignmentRouter);
 app.use('/publisher', publisherRouter);
+app.use('/attribute', attributeRouter);
 
 app.use(ErrorRequestHandler);
 // app.use((error: Error, request: Request, response:Response, next: NextFunction)=> {
