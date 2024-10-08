@@ -7,7 +7,7 @@ export type AttributeSaveInput = StrictOmit<
   'id' | 'generateUuid' | 'heroAttributes' | 'updatedAt' | 'createdAt'
 >;
 
-export type AttributeUpdate = StrictOmit<Attribute, 'heroAttributes'>;
+export type AttributeUpdate = Pick<Attribute, 'id' | 'attributeName'>;
 
 interface IAttributeRepository {
   create(data: AttributeSaveInput): Promise<Attribute>;

@@ -15,5 +15,6 @@ export class FindAttributeByIdService {
     if (!attribute) {
       throw new NotFound('Attribute not found.');
     }
+    return attribute;
   }
 }
