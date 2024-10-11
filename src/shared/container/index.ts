@@ -16,6 +16,8 @@ import { IPublisherRepository } from '@/modules/superhero/repositories/IPublishe
 import { PublisherRepository } from '@/modules/superhero/infra/typeorm/repositories/PublisherRepository';
 import { AttributeRepository } from '@/modules/superhero/infra/typeorm/repositories/AttributeRepository';
 import { IAttributeRepository } from '@/modules/superhero/repositories/IAttributeRepository';
+import { IHeroAttributeRepository } from '@/modules/superhero/repositories/IHeroAttributeRepository';
+import { HeroAttributeRepositoy } from '@/modules/superhero/infra/typeorm/repositories/HeroAttributeRepository';
 
 container.register<IUserRepository>('UserRepository', UserRepository);
 container.register<IColourRepository>('ColourRepository', ColourRepository);
@@ -32,4 +34,8 @@ container.register<IPublisherRepository>(
 container.register<IAttributeRepository>(
   'AttributeRepository',
   AttributeRepository,
+);
+container.register<IHeroAttributeRepository>(
+  'HeroAttributeRepository',
+  HeroAttributeRepositoy,
 );
