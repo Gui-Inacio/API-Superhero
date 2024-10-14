@@ -2,7 +2,10 @@ import { HeroAttribute } from '../infra/typeorm/entities/HeroAttribute';
 
 import { StrictOmit } from '@/shared/util/types/StrictOmitType';
 
-export type HeroAttributeSaveInput = StrictOmit<HeroAttribute, 'id'>;
+export type HeroAttributeSaveInput = StrictOmit<
+  HeroAttribute,
+  'id' | 'updatedAt' | 'createdAt' | 'generateUuid'
+>;
 
 export type HeroAttributeUpdate = Pick<
   HeroAttribute,
