@@ -7,9 +7,9 @@ export type HeroAttributeSaveInput = StrictOmit<
   'id' | 'updatedAt' | 'createdAt' | 'generateUuid'
 >;
 
-export type HeroAttributeUpdate = Pick<
+export type HeroAttributeUpdate = StrictOmit<
   HeroAttribute,
-  'id' | 'attribute_value' | 'superhero' | 'attribute'
+  'generateUuid' | 'updatedAt' | 'createdAt'
 >;
 
 interface IHeroAttributeRepository {
