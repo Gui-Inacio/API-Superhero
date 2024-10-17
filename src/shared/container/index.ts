@@ -18,6 +18,8 @@ import { AttributeRepository } from '@/modules/superhero/infra/typeorm/repositor
 import { IAttributeRepository } from '@/modules/superhero/repositories/IAttributeRepository';
 import { IHeroAttributeRepository } from '@/modules/superhero/repositories/IHeroAttributeRepository';
 import { HeroAttributeRepositoy } from '@/modules/superhero/infra/typeorm/repositories/HeroAttributeRepository';
+import { ISuperheroRepository } from '@/modules/superhero/repositories/ISuperheroRepository';
+import { SuperheroRepository } from '@/modules/superhero/infra/typeorm/repositories/SuperheroRepository';
 
 container.register<IUserRepository>('UserRepository', UserRepository);
 container.register<IColourRepository>('ColourRepository', ColourRepository);
@@ -38,4 +40,8 @@ container.register<IAttributeRepository>(
 container.register<IHeroAttributeRepository>(
   'HeroAttributeRepository',
   HeroAttributeRepositoy,
+);
+container.register<ISuperheroRepository>(
+  'SuperheroRepository',
+  SuperheroRepository,
 );

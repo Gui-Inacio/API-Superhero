@@ -7,13 +7,16 @@ export type SuperheroSaveInput = StrictOmit<
   'id' | 'createdAt' | 'updatedAt'
 >;
 
-//export type SuperheroUpdateInput = Pick<Superhero, 'id'>;
+export type SuperheroUpdate = StrictOmit<
+  Superhero,
+  'createdAt' | 'updatedAt' | 'generateUuid'
+>;
 
 interface ISuperheroRepository {
   create(data: SuperheroSaveInput): Promise<Superhero>;
   findById(id: string): Promise<Superhero | null>;
   listAll(): Promise<Superhero[] | null | Superhero>;
-  update(data: Superhero): Promise<Superhero | void>;
+  update(data: SuperheroUpdate): Promise<Superhero | void>;
   delete(id: string): Promise<void>;
 }
 
