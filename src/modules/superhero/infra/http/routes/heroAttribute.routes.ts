@@ -12,5 +12,10 @@ heroAttributeRouter.post(
   heroAttributeController.createHeroAttribute,
 );
 heroAttributeRouter.get('/', isAuth, heroAttributeController.listAll);
+heroAttributeRouter.get(
+  '/search/:id',
+  isAuth,
+  heroAttributeController.findByID,
+);
 
 export { heroAttributeRouter };

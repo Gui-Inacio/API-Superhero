@@ -18,6 +18,10 @@ interface IHeroAttributeRepository {
   listAll(): Promise<HeroAttribute[] | null | HeroAttribute>;
   delete(id: string): Promise<void>;
   update(data: HeroAttributeUpdate): Promise<void>;
+  findSuperHeroAndAttribute(
+    superhero: string,
+    attributte: string,
+  ): Promise<HeroAttribute | null>;
 }
 
 export { IHeroAttributeRepository };

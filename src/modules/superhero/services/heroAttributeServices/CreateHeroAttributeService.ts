@@ -6,6 +6,7 @@ import { ISuperheroRepository } from '../../repositories/ISuperheroRepository';
 import { IAttributeRepository } from '../../repositories/IAttributeRepository';
 
 import NotFound from '@/shared/errors/notFound';
+import Conflict from '@/shared/errors/conflict';
 
 @injectable()
 export class CreateHeroAttributeService {
@@ -26,6 +27,14 @@ export class CreateHeroAttributeService {
     const attribute = await this.attributeRepository.findById(data.attribute);
     if (!attribute) {
       throw new NotFound('Attribute not found!');
+    }
+    const attributeExists =
+      await this.heroAttributeRepository.findSuperHeroAndAttribute(
+        superhero.id,
+        attribute.id,
+      );
+    if (attributeExists) {
+      throw new Conflict('The attribute already exists for this hero!');
     }
     return await this.heroAttributeRepository.create({
       superhero,

@@ -33,6 +33,14 @@ export class HeroAttributeRepositoy
   async listAll() {
     return await this.heroAttributeRepository.find();
   }
+  async findSuperHeroAndAttribute(superheroId: string, attributteId: string) {
+    return this.heroAttributeRepository.findOne({
+      where: {
+        superhero: { id: superheroId },
+        attribute: { id: attributteId },
+      },
+    });
+  }
 
   async update(data: HeroAttributeUpdate) {
     await this.heroAttributeRepository.update({ id: data.id }, data);

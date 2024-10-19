@@ -9,7 +9,7 @@ const alignmentController = new AlignmentController();
 
 alignmentRouter.post('/create', alignmentController.createAlignment);
 alignmentRouter.get('/', isAuth, alignmentController.listAll);
-alignmentRouter.get('/:id', isAuth, alignmentController.findById);
+alignmentRouter.get('/search/:id', isAuth, alignmentController.findById);
 alignmentRouter.put('/update/:id', isAuth, alignmentController.updateAlignment);
 alignmentRouter.delete('/delete/:id', isAuth, alignmentController.delete);
 
