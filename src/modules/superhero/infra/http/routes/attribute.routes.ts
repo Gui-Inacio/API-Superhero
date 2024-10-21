@@ -7,7 +7,7 @@ import { isAuth } from '@/shared/infra/http/middlewares/IsAuth';
 const attributeRouter = Router();
 const attributeController = new AttributeController();
 
-attributeRouter.post('/create', attributeController.createAttribute);
+attributeRouter.post('/create', isAuth, attributeController.createAttribute);
 attributeRouter.get('/', isAuth, attributeController.listAll);
 attributeRouter.get('/search/:id', isAuth, attributeController.findById);
 attributeRouter.put('/update/:id', isAuth, attributeController.updateAttribute);
