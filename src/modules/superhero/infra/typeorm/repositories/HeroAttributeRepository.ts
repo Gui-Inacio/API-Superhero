@@ -28,10 +28,15 @@ export class HeroAttributeRepositoy
   }
 
   async findById(id: string) {
-    return await this.heroAttributeRepository.findOne({ where: { id } });
+    return await this.heroAttributeRepository.findOne({
+      where: { id },
+      relations: ['superhero', 'attribute'],
+    });
   }
   async listAll() {
-    return await this.heroAttributeRepository.find();
+    return await this.heroAttributeRepository.find({
+      relations: ['superhero', 'attribute'],
+    });
   }
   async findSuperHeroAndAttribute(superheroId: string, attributteId: string) {
     return this.heroAttributeRepository.findOne({

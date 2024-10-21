@@ -36,4 +36,9 @@ export class AttributeRepository
   async delete(id: string) {
     await this.attributeRepository.delete(id);
   }
+  async findByName(attributeName: string) {
+    return await this.attributeRepository.findOne({
+      where: { attributeName: attributeName },
+    });
+  }
 }

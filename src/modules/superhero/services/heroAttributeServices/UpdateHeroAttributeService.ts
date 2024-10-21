@@ -15,7 +15,7 @@ export class UpdateHeroAttributeService {
     @inject('HeroAttributeRepository')
     private readonly heroAttributeRepository: IHeroAttributeRepository,
     private readonly findHeroAttributeByIdService: FindHeroAttributeByIdService,
-    @inject('SuperHeroRepository')
+    @inject('SuperheroRepository')
     private readonly superHeroRepository: ISuperheroRepository,
     @inject('AttributeRepository')
     private readonly attributeRepository: IAttributeRepository,
@@ -38,5 +38,6 @@ export class UpdateHeroAttributeService {
       attribute: attribute,
       superhero: superhero,
     });
+    return await this.heroAttributeRepository.findById(heroAttribute.id);
   }
 }

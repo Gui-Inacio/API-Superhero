@@ -15,6 +15,7 @@ interface IAttributeRepository {
   listAll(): Promise<Attribute[]>;
   delete(id: string): Promise<void>;
   update(data: AttributeUpdate): Promise<void>;
+  findByName(attributeName: string): Promise<Attribute | null>;
 }
 
 export { IAttributeRepository };
