@@ -8,6 +8,7 @@ import { UpdateHeroAttribute } from '../../dtos/UpdateHeroAttributeDTO';
 import { FindHeroAttributeByIdService } from './FindHeroAttributeByIdService';
 
 import NotFound from '@/shared/errors/notFound';
+import Conflict from '@/shared/errors/conflict';
 
 @injectable()
 export class UpdateHeroAttributeService {
@@ -30,6 +31,20 @@ export class UpdateHeroAttributeService {
 
     if (!superhero || !attribute) {
       throw new NotFound('Um ou mais dados não foram encontrados!');
+    }
+
+    const oldAttribute = heroAttribute.attribute.attributeName;
+    if (oldAttribute != attribute.attributeName) {
+      const attributeAndHeroExists =
+        await this.heroAttributeRepository.findSuperHeroAndAttribute(
+          data.superhero,
+          data.attribute,
+        );
+      if (attributeAndHeroExists) {
+        throw new Conflict(
+          'Já exite este atributo cadastrado para este heroi!',
+        );
+      }
     }
 
     await this.heroAttributeRepository.update({
