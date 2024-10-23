@@ -1,5 +1,3 @@
-//import { DeleteResult } from 'typeorm';
-
 import { Alignment } from '../infra/typeorm/entities/Alignment';
 
 import { StrictOmit } from '@/shared/util/types/StrictOmitType';
