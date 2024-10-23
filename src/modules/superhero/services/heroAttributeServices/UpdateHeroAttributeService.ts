@@ -25,6 +25,9 @@ export class UpdateHeroAttributeService {
     const heroAttribute = await this.findHeroAttributeByIdService.execute(
       data.id,
     );
+    if (!heroAttribute) {
+      throw new NotFound('Hero Attribute not found!');
+    }
 
     const superhero = await this.superHeroRepository.findById(data.superhero);
     const attribute = await this.attributeRepository.findById(data.attribute);
@@ -32,19 +35,17 @@ export class UpdateHeroAttributeService {
     if (!superhero || !attribute) {
       throw new NotFound('Um ou mais dados não foram encontrados!');
     }
+    const attributeAndHeroExists =
+      await this.heroAttributeRepository.findSuperHeroAndAttribute(
+        data.superhero,
+        data.attribute,
+      );
 
-    const oldAttribute = heroAttribute.attribute.attributeName;
-    if (oldAttribute != attribute.attributeName) {
-      const attributeAndHeroExists =
-        await this.heroAttributeRepository.findSuperHeroAndAttribute(
-          data.superhero,
-          data.attribute,
-        );
-      if (attributeAndHeroExists) {
-        throw new Conflict(
-          'Já exite este atributo cadastrado para este heroi!',
-        );
-      }
+    if (
+      attributeAndHeroExists &&
+      attributeAndHeroExists.id !== heroAttribute.id
+    ) {
+      throw new Conflict('Já existe este atributo cadastrado para este heroi!');
     }
 
     await this.heroAttributeRepository.update({
