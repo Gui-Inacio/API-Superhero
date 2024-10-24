@@ -2,21 +2,21 @@ import { inject, injectable } from 'tsyringe';
 
 import { IRaceRepository } from '../../repositories/IRaceRepository';
 
+import NotFound from '@/shared/errors/notFound';
+
 @injectable()
-class DeleteRaceService {
+export class DeleteRaceService {
   constructor(
     @inject('RaceRepository')
     private readonly raceRepository: IRaceRepository,
   ) {}
 
-  async execute(id: string): Promise<void> {
+  async execute(id: string) {
     const race = await this.raceRepository.findById(id);
     if (!race) {
-      throw new Error('Race not found!');
+      throw new NotFound('Race not found!');
     }
 
     await this.raceRepository.delete(id);
   }
 }
-
-export default DeleteRaceService;
