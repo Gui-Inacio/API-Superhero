@@ -37,4 +37,9 @@ export class SuperPowerRepository
   async delete(id: string) {
     await this.superPowerRepository.delete(id);
   }
+  async findPowerByName(powerName: string) {
+    return this.superPowerRepository.findOne({
+      where: { powerName: powerName },
+    });
+  }
 }
