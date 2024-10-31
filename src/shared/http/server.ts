@@ -17,6 +17,7 @@ import { alignmentRouter } from '@/modules/superhero/infra/http/routes/alignment
 import { publisherRouter } from '@/modules/superhero/infra/http/routes/publisher.routes';
 import { attributeRouter } from '@/modules/superhero/infra/http/routes/attribute.routes';
 import { heroAttributeRouter } from '@/modules/superhero/infra/http/routes/heroAttribute.routes';
+import { superPowerRouter } from '@/modules/superhero/infra/http/routes/superPower.routes';
 
 const app = express();
 //const router = Router();
@@ -34,6 +35,7 @@ app.use('/alignment', alignmentRouter);
 app.use('/publisher', publisherRouter);
 app.use('/attribute', attributeRouter);
 app.use('/heroAttribute', heroAttributeRouter);
+app.use('/superPower', superPowerRouter);
 
 app.use(ErrorRequestHandler);
 // app.use((error: Error, request: Request, response:Response, next: NextFunction)=> {

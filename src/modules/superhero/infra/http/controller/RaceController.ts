@@ -6,9 +6,9 @@ import { CreateRaceService } from '@/modules/superhero/services/raceServices/Cre
 import { FindRaceByIdService } from '@/modules/superhero/services/raceServices/FindRaceByIdService';
 import NotFound from '@/shared/errors/notFound';
 import { ListAllRaceService } from '@/modules/superhero/services/raceServices/ListAllRaceService';
-import DeleteRaceService from '@/modules/superhero/services/raceServices/DeleteRaceService';
 import { UpdateRaceDTO } from '@/modules/superhero/dtos/UpdateRaceDTO';
 import { UpdateRaceService } from '@/modules/superhero/services/raceServices/UpdateRaceService';
+import { DeleteRaceService } from '@/modules/superhero/services/raceServices/DeleteRaceService';
 
 export default class RaceController {
   public async createRace(req: Request, res: Response) {
