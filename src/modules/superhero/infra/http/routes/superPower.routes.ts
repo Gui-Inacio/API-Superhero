@@ -9,5 +9,6 @@ const superPowerController = new SuperPowerController();
 
 superPowerRouter.post('/create', isAuth, superPowerController.createSuperPower);
 superPowerRouter.get('/', isAuth, superPowerController.listAll);
+superPowerRouter.get('/:id', isAuth, superPowerController.findById);
 
 export { superPowerRouter };
