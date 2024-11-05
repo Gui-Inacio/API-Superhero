@@ -5,6 +5,7 @@ import { UpdateSuperPower } from '../../dtos/UpdateSuperPowerDTO';
 
 import { FindSuperPowerByIdService } from './FindSuperPowerByIdService';
 import { FindPowerByNameService } from './FindByPowerNameService';
+
 import Conflict from '@/shared/errors/conflict';
 
 @injectable()
