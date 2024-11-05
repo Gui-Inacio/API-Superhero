@@ -5,7 +5,7 @@ import { ISuperPowerRepository } from '../../repositories/ISuperPowerRepository'
 import NotFound from '@/shared/errors/notFound';
 
 @injectable()
-export class DeleteSuperPower {
+export class DeleteSuperPowerService {
   constructor(
     @inject('SuperPowerRepository')
     private readonly superPowerRepository: ISuperPowerRepository,
