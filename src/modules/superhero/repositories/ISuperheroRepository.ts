@@ -4,7 +4,7 @@ import { StrictOmit } from '@/shared/util/types/StrictOmitType';
 
 export type SuperheroSaveInput = StrictOmit<
   Superhero,
-  'id' | 'createdAt' | 'updatedAt'
+  'id' | 'createdAt' | 'updatedAt' | 'generateUuid'
 >;
 
 export type SuperheroUpdate = StrictOmit<

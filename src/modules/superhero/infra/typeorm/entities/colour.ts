@@ -10,6 +10,10 @@ export class Colour {
   @Column()
   colour: string;
 
-  @OneToMany(() => Superhero, (superhero) => superhero.colour)
-  superhero: Superhero[];
+  @OneToMany(() => Superhero, (superhero) => superhero.eyeColour)
+  eyeColours: Superhero[];
+  @OneToMany(() => Superhero, (superhero) => superhero.skinColour)
+  skinColours: Superhero[];
+  @OneToMany(() => Superhero, (superhero) => superhero.hairColour)
+  hairColours: Superhero[];
 }

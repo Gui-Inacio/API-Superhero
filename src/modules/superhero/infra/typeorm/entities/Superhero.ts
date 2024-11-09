@@ -32,11 +32,23 @@ export class Superhero extends AbstractEntity {
   @JoinColumn({ name: 'gender_id' })
   gender: Gender;
 
-  @ManyToOne(() => Colour, (colour) => colour.superhero, {
+  @ManyToOne(() => Colour, (eyeColour) => eyeColour.eyeColours, {
     onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'colour_id' })
-  colour: Colour;
+  @JoinColumn({ name: 'eye_colour' })
+  eyeColour: Colour;
+
+  @ManyToOne(() => Colour, (hairColour) => hairColour.hairColours, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'hair_colour' })
+  hairColour: Colour;
+
+  @ManyToOne(() => Colour, (skinColour) => skinColour.skinColours, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'skin_colour' })
+  skinColour: Colour;
 
   @ManyToOne(() => Race, (race) => race.superhero, {
     onDelete: 'CASCADE',
@@ -54,7 +66,7 @@ export class Superhero extends AbstractEntity {
     onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'alligment_id' })
-  alignment: Publisher;
+  alignment: Alignment;
 
   @OneToMany(() => HeroAttribute, (heroAttribute) => heroAttribute.superhero)
   heroAttributes: HeroAttribute[];
