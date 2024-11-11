@@ -1,4 +1,5 @@
 import { injectable } from 'tsyringe';
+import { In } from 'typeorm';
 
 import { Colour } from '../entities/Colour';
 
@@ -36,5 +37,10 @@ export class ColourRepository
   }
   async delete(id: string) {
     await this.colourRepository.delete(id);
+  }
+  async findByIds(ids: string[]) {
+    return await this.colourRepository.find({
+      where: { id: In(ids) },
+    });
   }
 }
