@@ -12,6 +12,7 @@ interface ISuperPowerRepository {
   delete(id: string): Promise<void>;
   update(data: SuperpowerUpdate): Promise<void>;
   findPowerByName(powerName: string): Promise<Superpower | null>;
+  findByIds(ids: string[]): Promise<Superpower[]>;
 }
 
 export { ISuperPowerRepository };

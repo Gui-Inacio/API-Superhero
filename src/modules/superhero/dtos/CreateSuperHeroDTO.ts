@@ -12,8 +12,11 @@ const createSuperHeroSchema = z.object({
   race: z.string(),
   publisher: z.string(),
   alignment: z.string(),
-  heroAttributes: z.string(),
-  superpowers: z.string(),
+  superpowers: z.array(
+    z.object({
+      powerId: z.string().uuid(),
+    }),
+  ),
 });
 
 export class CreateSuperHeroDTO extends AbstractDTO<

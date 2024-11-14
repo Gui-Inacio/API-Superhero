@@ -69,7 +69,7 @@ export class Superhero extends AbstractEntity {
   alignment: Alignment;
 
   @OneToMany(() => HeroAttribute, (heroAttribute) => heroAttribute.superhero)
-  heroAttributes: HeroAttribute[];
+  heroAttributes?: HeroAttribute[];
 
   @ManyToMany(() => Superpower, { cascade: true })
   @JoinTable({

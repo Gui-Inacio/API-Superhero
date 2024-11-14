@@ -1,4 +1,5 @@
 import { injectable } from 'tsyringe';
+import { In } from 'typeorm';
 
 import { Superpower } from '../entities/Superpower';
 
@@ -38,8 +39,18 @@ export class SuperPowerRepository
     await this.superPowerRepository.delete(id);
   }
   async findPowerByName(powerName: string) {
-    return this.superPowerRepository.findOne({
+    return await this.superPowerRepository.findOne({
       where: { powerName: powerName },
+    });
+  }
+  async findByIds(ids: string[]) {
+    return await this.superPowerRepository.find({
+      select: {
+        id: true,
+      },
+      where: {
+        id: In(ids),
+      },
     });
   }
 }
