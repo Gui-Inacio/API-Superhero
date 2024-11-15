@@ -27,11 +27,32 @@ export class SuperheroRepository
   }
 
   async findById(id: string) {
-    return await this.superheroRepository.findOne({ where: { id } });
+    return await this.superheroRepository.findOne({
+      where: { id },
+      relations: [
+        'gender',
+        'eyeColour',
+        'hairColour',
+        'skinColour',
+        'publisher',
+        'alignment',
+        'race',
+      ],
+    });
   }
 
   async listAll() {
-    return await this.superheroRepository.find();
+    return await this.superheroRepository.find({
+      relations: [
+        'gender',
+        'eyeColour',
+        'hairColour',
+        'skinColour',
+        'publisher',
+        'alignment',
+        'race',
+      ],
+    });
   }
 
   async update(data: SuperheroUpdate) {

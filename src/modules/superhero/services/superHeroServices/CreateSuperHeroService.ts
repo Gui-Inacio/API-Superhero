@@ -5,7 +5,6 @@ import { CreateSuperHero } from '../../dtos/CreateSuperHeroDTO';
 import { FindPublisherByIdService } from '../publisherServices/FindPublisherByIdService';
 import { FindRaceByIdService } from '../raceServices/FindRaceByIdService';
 import { FindAlignmentByIdService } from '../alignmentServices/FindAlignmentByIdService';
-//import { FindHeroAttributeByIdService } from '../heroAttributeServices/FindHeroAttributeByIdService';
 import { FindColourByIdService } from '../colourServices/FindColourByIdService';
 import { ISuperPowerRepository } from '../../repositories/ISuperPowerRepository';
 import { FindGenderByIdService } from '../genderServices/FindGenderByIdService';
@@ -22,8 +21,6 @@ export class CreateSuperHeroService {
     private readonly findPublisherById: FindPublisherByIdService,
     private readonly findRaceById: FindRaceByIdService,
     private readonly findAlignmentById: FindAlignmentByIdService,
-    // @inject('HeroAttributeRepository')
-    // private readonly findHeroAttributeById: FindHeroAttributeByIdService,
 
     @inject('SuperPowerRepository')
     private readonly superPowerRepository: ISuperPowerRepository,
@@ -37,7 +34,7 @@ export class CreateSuperHeroService {
     const skinColour = await this.findColourById.execute(data.skinColour);
     const eyeColour = await this.findColourById.execute(data.eyeColour);
     if (!hairColour || !skinColour || !eyeColour) {
-      throw new NotFound('Uma ou mais cores, não foram encontradas!');
+      throw new NotFound('One or more colors were not found!');
     }
 
     const publisher = await this.findPublisherById.execute(data.publisher);

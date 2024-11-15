@@ -3,6 +3,9 @@ import { Request, Response } from 'express';
 
 import { CreateSuperHeroDTO } from '@/modules/superhero/dtos/CreateSuperHeroDTO';
 import { CreateSuperHeroService } from '@/modules/superhero/services/superHeroServices/CreateSuperHeroService';
+import { ListAllSuperHeroService } from '@/modules/superhero/services/superHeroServices/ListAllSuperHeroService';
+import { FindSuperHeroByIdService } from '@/modules/superhero/services/superHeroServices/FindSuperHeroByIdService';
+import NotFound from '@/shared/errors/notFound';
 
 export default class SuperHeroController {
   public async create(req: Request, res: Response) {
@@ -12,5 +15,19 @@ export default class SuperHeroController {
       requestValidated.getAll(),
     );
     return res.status(200).json(createdSuperHero);
+  }
+  public async listAll(req: Request, res: Response) {
+    const listAllService = container.resolve(ListAllSuperHeroService);
+    const superHero = await listAllService.execute();
+    return res.status(200).json(superHero);
+  }
+  public async findById(req: Request, res: Response) {
+    const { id } = req.params;
+    const findById = container.resolve(FindSuperHeroByIdService);
+    const superhero = await findById.execute(id);
+    if (!superhero) {
+      throw new NotFound('Superhero not found!');
+    }
+    return res.status(200).json(superhero);
   }
 }
