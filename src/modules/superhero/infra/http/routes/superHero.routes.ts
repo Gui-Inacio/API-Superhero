@@ -11,5 +11,6 @@ const superHeroController = new SuperHeroController();
 superHeroRouter.post('/create', isAuth, superHeroController.create);
 superHeroRouter.get('/', isAuth, superHeroController.listAll);
 superHeroRouter.get('/:id', isAuth, superHeroController.findById);
+superHeroRouter.delete('/delete/:id', isAuth, superHeroController.delete);
 
 export { superHeroRouter };

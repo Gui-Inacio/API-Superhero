@@ -6,6 +6,7 @@ import { CreateSuperHeroService } from '@/modules/superhero/services/superHeroSe
 import { ListAllSuperHeroService } from '@/modules/superhero/services/superHeroServices/ListAllSuperHeroService';
 import { FindSuperHeroByIdService } from '@/modules/superhero/services/superHeroServices/FindSuperHeroByIdService';
 import NotFound from '@/shared/errors/notFound';
+import { DeleteSuperHeroService } from '@/modules/superhero/services/superHeroServices/DeleteSuperHeroService';
 
 export default class SuperHeroController {
   public async create(req: Request, res: Response) {
@@ -29,5 +30,11 @@ export default class SuperHeroController {
       throw new NotFound('Superhero not found!');
     }
     return res.status(200).json(superhero);
+  }
+  public async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    const deleteSuperHeroService = container.resolve(DeleteSuperHeroService);
+    await deleteSuperHeroService.execute(id);
+    return res.status(200).json({ message: 'Superhero succesfully removed' });
   }
 }

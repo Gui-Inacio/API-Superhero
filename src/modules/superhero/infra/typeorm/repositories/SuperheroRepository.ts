@@ -29,29 +29,33 @@ export class SuperheroRepository
   async findById(id: string) {
     return await this.superheroRepository.findOne({
       where: { id },
-      relations: [
-        'gender',
-        'eyeColour',
-        'hairColour',
-        'skinColour',
-        'publisher',
-        'alignment',
-        'race',
-      ],
+      relations: {
+        gender: true,
+        eyeColour: true,
+        hairColour: true,
+        skinColour: true,
+        publisher: true,
+        race: true,
+        alignment: true,
+        heroAttributes: true,
+        superpowers: true,
+      },
     });
   }
 
   async listAll() {
     return await this.superheroRepository.find({
-      relations: [
-        'gender',
-        'eyeColour',
-        'hairColour',
-        'skinColour',
-        'publisher',
-        'alignment',
-        'race',
-      ],
+      relations: {
+        gender: true,
+        eyeColour: true,
+        hairColour: true,
+        skinColour: true,
+        publisher: true,
+        race: true,
+        alignment: true,
+        heroAttributes: true,
+        superpowers: true,
+      },
     });
   }
 
