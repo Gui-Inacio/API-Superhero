@@ -11,4 +11,5 @@ export class Attribute extends AbstractEntity {
 
   @OneToMany(() => HeroAttribute, (heroAttribute) => heroAttribute.attribute)
   heroAttributes: HeroAttribute[];
+  //add a coment
 }
