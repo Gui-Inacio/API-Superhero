@@ -1,6 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 
-import { ISuperheroRepository } from '../../repositories/ISuperheroRepository';
+import {
+  GetAllSuperhero,
+  ISuperheroRepository,
+} from '../../repositories/ISuperheroRepository';
 
 @injectable()
 export class ListAllSuperHeroService {
@@ -9,7 +12,7 @@ export class ListAllSuperHeroService {
     private readonly superHeroRepository: ISuperheroRepository,
   ) {}
 
-  async execute() {
-    return await this.superHeroRepository.listAll();
+  async execute(data: GetAllSuperhero) {
+    return await this.superHeroRepository.listAll(data);
   }
 }

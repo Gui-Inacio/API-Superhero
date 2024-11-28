@@ -7,6 +7,7 @@ import { ListAllSuperHeroService } from '@/modules/superhero/services/superHeroS
 import { FindSuperHeroByIdService } from '@/modules/superhero/services/superHeroServices/FindSuperHeroByIdService';
 import NotFound from '@/shared/errors/notFound';
 import { DeleteSuperHeroService } from '@/modules/superhero/services/superHeroServices/DeleteSuperHeroService';
+import { GetAllSuperHeroDTO } from '@/modules/superhero/dtos/ListAllSuperheroDTO';
 
 export default class SuperHeroController {
   public async create(req: Request, res: Response) {
@@ -18,9 +19,20 @@ export default class SuperHeroController {
     return res.status(200).json(createdSuperHero);
   }
   public async listAll(req: Request, res: Response) {
-    const listAllService = container.resolve(ListAllSuperHeroService);
-    const superHero = await listAllService.execute();
-    return res.status(200).json(superHero);
+    const {
+      page = 1,
+      size = 200,
+      filter,
+    } = new GetAllSuperHeroDTO(req.query).getAll();
+
+    const getAllSuperHeroService = container.resolve(ListAllSuperHeroService);
+    const superhero = await getAllSuperHeroService.execute({
+      page,
+      size,
+      filter,
+    });
+
+    return res.status(200).json(superhero);
   }
   public async findById(req: Request, res: Response) {
     const { id } = req.params;

@@ -1,8 +1,10 @@
 import { injectable } from 'tsyringe';
+import { ILike } from 'typeorm';
 
 import { Superhero } from '../entities/Superhero';
 
 import {
+  GetAllSuperhero,
   ISuperheroRepository,
   SuperheroSaveInput,
   SuperheroUpdate,
@@ -43,8 +45,29 @@ export class SuperheroRepository
     });
   }
 
-  async listAll() {
-    return await this.superheroRepository.find({
+  async listAll(data: GetAllSuperhero) {
+    const { filter, page, size } = data;
+
+    const offset = (Number(page) - 1) * size;
+
+    const superheroName = filter?.superheroName
+      ? ILike(`%${filter.superheroName}%`)
+      : undefined;
+    const fullName = filter?.fullName
+      ? ILike(`%${filter.fullName}%`)
+      : undefined;
+
+    const [result, count] = await this.superheroRepository.findAndCount({
+      where: {
+        superheroName,
+        fullName,
+      },
+      select: {
+        id: true,
+        superheroName: true,
+        fullName: true,
+        createdAt: true,
+      },
       relations: {
         gender: true,
         eyeColour: true,
@@ -56,7 +79,19 @@ export class SuperheroRepository
         heroAttributes: true,
         superpowers: true,
       },
+      take: size,
+      skip: offset,
+      order: { createdAt: 'DESC' },
     });
+
+    const totalPages = Math.ceil(count / size);
+
+    return {
+      currentPage: page,
+      totalItens: count,
+      totalPages: totalPages,
+      content: result,
+    };
   }
 
   async update(data: SuperheroUpdate) {
