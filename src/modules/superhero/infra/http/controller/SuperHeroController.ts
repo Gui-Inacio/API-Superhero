@@ -9,6 +9,9 @@ import NotFound from '@/shared/errors/notFound';
 import { DeleteSuperHeroService } from '@/modules/superhero/services/superHeroServices/DeleteSuperHeroService';
 import { GetAllSuperHeroDTO } from '@/modules/superhero/dtos/ListAllSuperheroDTO';
 
+import { UpdateSuperheroService } from '@/modules/superhero/services/superHeroServices/UpdateSuperHeroService';
+import { UpdateSuperheroDTO } from '@/modules/superhero/dtos/UpdateSuperHeroDTO';
+
 export default class SuperHeroController {
   public async create(req: Request, res: Response) {
     const requestValidated = new CreateSuperHeroDTO(req.body);
@@ -48,5 +51,17 @@ export default class SuperHeroController {
     const deleteSuperHeroService = container.resolve(DeleteSuperHeroService);
     await deleteSuperHeroService.execute(id);
     return res.status(200).json({ message: 'Superhero succesfully removed' });
+  }
+  public async update(req: Request, res: Response) {
+    const requestValidated = new UpdateSuperheroDTO({
+      id: req.params.id,
+      ...req.body,
+    });
+
+    const updateSuperheroService = container.resolve(UpdateSuperheroService);
+    const superhero = await updateSuperheroService.execute(
+      requestValidated.getAll(),
+    );
+    return res.json(superhero);
   }
 }

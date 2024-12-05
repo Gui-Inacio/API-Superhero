@@ -15,7 +15,7 @@ export type GetAllSuperhero = IPageRequest<{
   Required<Pick<IPageRequest, 'page' | 'size'>>;
 export type SuperheroUpdate = StrictOmit<
   Superhero,
-  'createdAt' | 'updatedAt' | 'generateUuid'
+  'createdAt' | 'updatedAt' | 'generateUuid' | 'heroAttributes'
 >;
 
 interface ISuperheroRepository {
