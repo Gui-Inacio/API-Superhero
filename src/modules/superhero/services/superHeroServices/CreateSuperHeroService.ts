@@ -57,6 +57,7 @@ export class CreateSuperHeroService {
     if (superpowers.length !== superpowerIds.length) {
       throw new NotFound('SuperPower not found!');
     }
+    console.log(superpowers);
 
     return await this.superHeroRepository.create({
       superheroName: data.superheroName,

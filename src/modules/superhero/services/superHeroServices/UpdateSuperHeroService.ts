@@ -17,13 +17,17 @@ import NotFound from '@/shared/errors/notFound';
 export class UpdateSuperheroService {
   constructor(
     @inject('SuperheroRepository')
+    @inject('GenderRepository')
     private readonly superheroRepository: ISuperheroRepository,
+
     private readonly findSuperheroByIdService: FindSuperHeroByIdService,
     private readonly findGenderByIdService: FindGenderByIdService,
     private readonly findColourByIdService: FindColourByIdService,
     private readonly findRaceByIdService: FindRaceByIdService,
     private readonly findPublisherByIdService: FindPublisherByIdService,
     private readonly findAlignmentByIdService: FindAlignmentByIdService,
+
+    @inject('SuperPowerRepository')
     private readonly superPowerRepository: ISuperPowerRepository,
   ) {}
   async execute(data: UpdateSuperhero) {

@@ -22,7 +22,7 @@ interface ISuperheroRepository {
   create(data: SuperheroSaveInput): Promise<Superhero>;
   findById(id: string): Promise<Superhero | null>;
   listAll(data: GetAllSuperhero): Promise<IPageResponse<Superhero>>;
-  update(data: SuperheroUpdate): Promise<Superhero | void>;
+  update(data: SuperheroUpdate): Promise<void>;
   delete(id: string): Promise<void>;
 }
 

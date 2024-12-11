@@ -12,5 +12,6 @@ superHeroRouter.post('/create', isAuth, superHeroController.create);
 superHeroRouter.get('/', isAuth, superHeroController.listAll);
 superHeroRouter.get('/:id', isAuth, superHeroController.findById);
 superHeroRouter.delete('/delete/:id', isAuth, superHeroController.delete);
+superHeroRouter.put('/update/:id', isAuth, superHeroController.update);
 
 export { superHeroRouter };

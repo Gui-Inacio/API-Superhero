@@ -8,7 +8,6 @@ import { FindSuperHeroByIdService } from '@/modules/superhero/services/superHero
 import NotFound from '@/shared/errors/notFound';
 import { DeleteSuperHeroService } from '@/modules/superhero/services/superHeroServices/DeleteSuperHeroService';
 import { GetAllSuperHeroDTO } from '@/modules/superhero/dtos/ListAllSuperheroDTO';
-
 import { UpdateSuperheroService } from '@/modules/superhero/services/superHeroServices/UpdateSuperHeroService';
 import { UpdateSuperheroDTO } from '@/modules/superhero/dtos/UpdateSuperHeroDTO';
 

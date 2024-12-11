@@ -95,7 +95,7 @@ export class SuperheroRepository
   }
 
   async update(data: SuperheroUpdate) {
-    await this.superheroRepository.update({ id: data.id }, data);
+    await this.superheroRepository.save(data);
   }
   async delete(id: string) {
     await this.superheroRepository.delete(id);
