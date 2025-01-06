@@ -24,6 +24,7 @@ interface ISuperheroRepository {
   listAll(data: GetAllSuperhero): Promise<IPageResponse<Superhero>>;
   update(data: SuperheroUpdate): Promise<void>;
   delete(id: string): Promise<void>;
+  findByPublisher(publisher: string): Promise<Superhero[]>;
 }
 
 export { ISuperheroRepository };

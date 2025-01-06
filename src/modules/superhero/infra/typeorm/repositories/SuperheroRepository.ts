@@ -100,4 +100,10 @@ export class SuperheroRepository
   async delete(id: string) {
     await this.superheroRepository.delete(id);
   }
+  async findByPublisher(publisher: string) {
+    const superhero = await this.superheroRepository.find({
+      where: { id: publisher },
+    });
+    return superhero;
+  }
 }
