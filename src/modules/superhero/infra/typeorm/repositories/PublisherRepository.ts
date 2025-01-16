@@ -1,4 +1,5 @@
 import { injectable } from 'tsyringe';
+import { In } from 'typeorm';
 
 import { Publisher } from '../entities/Publisher';
 
@@ -6,7 +7,7 @@ import { AbstractTransactionRepository } from '@/shared/container/providers/tran
 import {
   IPublisherRepository,
   PublisherSaveInput,
-  PublisherUpdateInput,
+  PublisherUpdate,
 } from '@/modules/superhero/repositories/IPublisherRepository';
 import { AppDataSource } from '@/shared/infra/typeorm';
 import { TransactionManager } from '@/shared/container/providers/transaction-menager/TransactionManager';
@@ -33,10 +34,33 @@ export class PublisherRepository
     return await this.publisherRepository.find();
   }
 
-  async update(data: PublisherUpdateInput) {
+  async update(data: PublisherUpdate) {
     await this.publisherRepository.update({ id: data.id }, data);
   }
   async delete(id: string) {
     await this.publisherRepository.delete(id);
+  }
+  async findByIds(ids: string[]) {
+    return await this.publisherRepository.find({
+      where: {
+        id: In(ids),
+      },
+      relations: {
+        superhero: {
+          heroAttributes: {
+            attribute: true,
+          },
+        },
+      },
+      order: {
+        superhero: {
+          heroAttributes: {
+            attribute: {
+              attributeName: 'ASC',
+            },
+          },
+        },
+      },
+    });
   }
 }
