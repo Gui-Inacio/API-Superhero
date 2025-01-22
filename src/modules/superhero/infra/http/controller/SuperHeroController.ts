@@ -10,6 +10,8 @@ import { DeleteSuperHeroService } from '@/modules/superhero/services/superHeroSe
 import { GetAllSuperHeroDTO } from '@/modules/superhero/dtos/ListAllSuperheroDTO';
 import { UpdateSuperheroService } from '@/modules/superhero/services/superHeroServices/UpdateSuperHeroService';
 import { UpdateSuperheroDTO } from '@/modules/superhero/dtos/UpdateSuperHeroDTO';
+import { CreateSuperheroBattleDTO } from '@/modules/superhero/dtos/CreateSuperheroBattleDTO';
+import { BattleService } from '@/modules/superhero/services/superheroBattleServices/BattleService';
 
 export default class SuperHeroController {
   public async create(req: Request, res: Response) {
@@ -62,5 +64,14 @@ export default class SuperHeroController {
       requestValidated.getAll(),
     );
     return res.json(superhero);
+  }
+  async createBattle(req: Request, res: Response) {
+    const requestValidated = new CreateSuperheroBattleDTO(req.body);
+
+    const battleService = container.resolve(BattleService);
+    const createdBattle = await battleService.execute(
+      requestValidated.getAll(),
+    );
+    return res.status(200).json(createdBattle);
   }
 }

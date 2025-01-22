@@ -102,7 +102,8 @@ export class SuperheroRepository
   }
   async findByPublisher(publisher: string) {
     const superhero = await this.superheroRepository.find({
-      where: { id: publisher },
+      where: { publisher: { publisher: publisher } },
+      relations: ['heroAttributes', 'heroAttributes.attribute'],
     });
     return superhero;
   }

@@ -16,5 +16,5 @@ export class HeroAttribute extends AbstractEntity {
   attribute: Attribute;
 
   @Column()
-  attribute_value: string;
+  attribute_value: number;
 }

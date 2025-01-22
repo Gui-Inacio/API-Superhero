@@ -8,7 +8,7 @@ import NotFound from '@/shared/errors/notFound';
 import { ListAllPublisherService } from '@/modules/superhero/services/publisherServices/ListAllPublisherService';
 import { UpdatePublisherDTO } from '@/modules/superhero/dtos/UpdatePublisherDTO';
 import { UpdatePublisherService } from '@/modules/superhero/services/publisherServices/UpdatePublisherService';
-import DeletePublisherService from '@/modules/superhero/services/publisherServices/DeletePublisherService';
+import { DeletePublisherService } from '@/modules/superhero/services/publisherServices/DeletePublisherService';
 
 export default class PublisherController {
   public async createPublisher(req: Request, res: Response) {

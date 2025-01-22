@@ -13,5 +13,6 @@ superHeroRouter.get('/', isAuth, superHeroController.listAll);
 superHeroRouter.get('/:id', isAuth, superHeroController.findById);
 superHeroRouter.delete('/delete/:id', isAuth, superHeroController.delete);
 superHeroRouter.put('/update/:id', isAuth, superHeroController.update);
+superHeroRouter.post('/battle', isAuth, superHeroController.createBattle);
 
 export { superHeroRouter };
